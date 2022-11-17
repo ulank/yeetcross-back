@@ -45,6 +45,10 @@ public class SneakerService {
         return sneakerRepository.findAll();
     }
 
+    public List<Sneaker> getAllSneakersHits(){
+        return sneakerRepository.getSneakersByIsHitIsTrue();
+    }
+
     public Sneaker getSneakerById(String sneakerId) throws ClassNotFoundException {
         Optional<Sneaker> sneakerOptional = this.sneakerRepository.findById(sneakerId);
 

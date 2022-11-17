@@ -26,6 +26,11 @@ public class SneakerController {
         return ResponseEntity.ok().body(sneakerService.getAllSneakers());
     }
 
+    @GetMapping("/sneakers/hits")
+    public ResponseEntity<List<Sneaker>> getSneakersHits() {
+        return ResponseEntity.ok().body(sneakerService.getAllSneakersHits());
+    }
+
     @GetMapping("/sneakers/{id}")
     public ResponseEntity<Sneaker> getSneakerById(@PathVariable String id) throws ClassNotFoundException {
         return new ResponseEntity<>(sneakerService.getSneakerById(id), HttpStatus.OK);
