@@ -42,13 +42,13 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthDto data) {
         try {
-            String username = data.getUsername();
             String email = data.getEmail();
+            User user = users.findByEmail(email);
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, data.getPassword()));
             String token = jwtTokenProvider.createToken(email, this.users.findByEmail(email).getRoles());
             Map<Object, Object> model = new HashMap<>();
             model.put("email", email);
-            model.put("username", username);
+            model.put("username", user.getUsername());
             model.put("token", token);
             return ok(model);
         } catch (AuthenticationException e) {
